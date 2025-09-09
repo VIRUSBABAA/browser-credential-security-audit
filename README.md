@@ -23,32 +23,6 @@ It is designed for **educational purposes** and **authorized security audits onl
 
 
 
-## 📂 Code
-python
-import os
-
-def find_chrome_profiles():
-    chrome_profiles = []
-    chrome_profile_path = os.path.join(os.path.expanduser('~'), 'AppData', 'Local', 'Google', 'Chrome', 'User Data')
-
-    if os.path.exists(chrome_profile_path):
-        profiles = os.listdir(chrome_profile_path)
-        for profile in profiles:
-            if profile.startswith('Profile'):
-                chrome_profiles.append(profile)
-    return chrome_profiles
-
-if __name__ == "__main__":
-    profiles = find_chrome_profiles()
-    if profiles:
-        print("Chrome profiles found:")
-        for profile in profiles:
-            print(profile)
-    else:
-        print("No Chrome profiles found.")
-
-
-
 
 ## ▶️ Usage
 
