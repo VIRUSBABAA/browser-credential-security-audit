@@ -1,26 +1,41 @@
 
-# 🔍 Chrome Profile Finder (Python)
+# 🔐 Chrome Credential Security Audit Tool (Python)
 
 ## 📖 Overview
-Chrome Profile Finder is a lightweight **Python tool** that scans a Windows system to detect and list all Google Chrome user profiles.  
-It is designed for **educational purposes** and **authorized security audits only**, helping security researchers and IT professionals understand browser data storage.
+This project is a **Python-based Proof-of-Concept (PoC)** security audit tool that demonstrates the risks of storing credentials in browsers like Google Chrome.  
+It retrieves and decrypts locally saved login credentials for **educational purposes** and **authorized penetration testing only**.  
+The tool also demonstrates secure handling of sensitive data, local database access, and optional integration with alerting systems (e.g., Discord webhooks for security notifications).
 
+---
 
 ## 🚀 Features
-- 🔍 Detects all Chrome user profiles installed on a Windows machine.
-- ⚡ Simple and fast script — no external dependencies.
-- 🖥️ Works as a standalone `.py` script or packaged `.exe`.
-- 🛡️ Great for security research and troubleshooting.
+- 🔍 Extract and decrypt saved Chrome credentials.
+- 🌐 Retrieves the machine’s external IP address (via API).
+- 📂 Saves findings to a local report file.
+- 🔔 Optional Discord webhook integration for alerting (security teams only).
+- 🔑 Demonstrates AES decryption using Chrome’s local encryption key.
+- 🖥️ Built for Windows environments.
 
-
+---
 
 ## 🛠️ Tech Stack
-| Technology        | Purpose                              |
-|-------------------|--------------------------------------|
-| **Python 3.x**    | Core programming language            |
-| **os module**     | File system navigation               |
-| **PyInstaller**   | Build `.exe` executable              |
+| Technology              | Purpose                                            |
+|-------------------------|----------------------------------------------------|
+| **Python 3.x**          | Core programming language                          |
+| **SQLite3**             | Accessing Chrome's local credential database       |
+| **PyCryptodome**        | AES decryption of stored passwords                 |
+| **pywin32 (win32crypt)**| Windows DPAPI decryption                           |
+| **Requests**            | API calls for external IP retrieval & notifications|
+| **PyInstaller**         | Optional `.exe` packaging                          |
 
+---
+
+## 📂 How It Works
+1. Retrieves Chrome’s AES encryption key from the local `Local State` file.
+2. Creates a safe copy of Chrome’s `Login Data` SQLite database.
+3. Decrypts saved credentials using Windows DPAPI and AES-GCM.
+4. Generates a local report of URLs, usernames, and passwords.
+5. (Optional) Sends the report to a configured webhook (for internal security alerting only).
 
 
 
@@ -60,8 +75,6 @@ pyinstaller --onefile chrome_profiles.py
 
 
 dist/chrome_profiles.exe
-
-
 
 
 ## 🔒 Disclaimer
