@@ -44,7 +44,9 @@ The tool also demonstrates secure handling of sensitive data, local database acc
 1. Clone this repository:
 
 bash
+
 git clone https://github.com/your-username/chrome-profile-finder.git
+
 cd chrome-profile-finder
 
 
